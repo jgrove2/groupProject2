@@ -35,6 +35,15 @@ app.get('/api/planets/:id/films', async (req, res) => {
     }
 });
 
+app.get('/api/films/:id/planets', async (req, res) => {
+    try {
+        let planets = await queryMongo('films_planets', {film_id: parseInt(req.params.id)});
+        res.send(planets);
+    } catch (err) {
+        throw err;
+    }
+});
+
 app.get('/api/planets/:id/characters', async (req, res) => {
     try {
         let planets = await queryMongo('characters', { homeworld: parseInt(req.params.id) });
@@ -71,6 +80,14 @@ app.get('/api/characters/:id/films', async (req, res) => {
     }
 });
 
+app.get('/api/films/:id/characters', async (req, res) => {
+    try {
+        let characters = await queryMongo('films_characters', { film_id: parseInt(req.params.id) });
+        res.send(characters);
+    } catch (err) {
+        throw err;
+    }
+});
 app.get('/api/films', async (req, res) => {
     try {
         let films = await queryMongo('films');
