@@ -1,7 +1,7 @@
 const { query } = require('express');
 const { MongoClient } = require('mongodb');
 
-const queryMongo = async (type, _id = null) => {
+const queryMongo = async (type, query={}) => {
     let returnedDocuments = null;
     try {
         const url = 'mongodb://localhost:27017';
@@ -10,12 +10,15 @@ const queryMongo = async (type, _id = null) => {
         const collection = database.collection(type);
         switch (type) {
             case ('planets'):
-                let query = (_id === null) ? {} : { id: parseInt(_id) };
-                let options = {};
                 console.log(query);
-                returnedDocuments = await collection.find(query, options).toArray();
+                returnedDocuments = await collection.find(query).toArray();
                 console.log(returnedDocuments);
                 break;
+            case ('films'):
+                console.log(query);
+                returnedDocuments = await collection.find(query).toArray();
+                console.log(returnedDocuments);
+                    break;
             default:
                 throw new Error('Invalid query type');
         }
@@ -29,4 +32,7 @@ const queryMongo = async (type, _id = null) => {
     }
 }
 
+
+
 module.exports = queryMongo;
+
