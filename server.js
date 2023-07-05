@@ -17,6 +17,16 @@ app.get('/api/planets', async (req, res) => {
     }
 })
 
+app.get('/api/planets/:id', async (req, res) => {
+    try {
+        let planets = await queryMongo('planets', req.params.id);
+        console.log(req.params.id);
+        res.send(planets);
+    } catch (err) {
+        throw err;
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 })
