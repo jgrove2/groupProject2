@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import HomeCharacter from './HomeCharacter';
 
 const Home = (props) => {
     const [characters, setCharacters] = useState([]);
 
     const searchCharacters = async () => {
-        let temp = await fetch('http://localhost:3001/api/characters');
-        console.log(temp);
+        const temp = await fetch('http://localhost:3001/api/characters');
+        const json = await temp.json();
+        console.log(json)
+        setCharacters(json)
     }
 
     useEffect(() => {
@@ -17,7 +20,9 @@ const Home = (props) => {
         <h4>Who are you looking for?</h4>
         <hr/>
         {
-            characters
+            characters.map((char, index) => {
+                return <HomeCharacter key={index} name={char.name} id={char.id} />
+            })
         }
         </>
     )
