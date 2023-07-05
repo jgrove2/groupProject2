@@ -1,14 +1,18 @@
 const queryMongo = require('./queryMongo.js');
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const port = 3001;
 
+var corsOptions = {
+    origin: 'http://localhost:3000'
+}
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
     res.send('Hello World');
 });
 
-app.get('/api/planets', async (req, res) => {
+app.get('/api/planets', cors(corsOptions), async (req, res) => {
     try {
         let planets = await queryMongo('planets');
         res.send(planets);
@@ -17,7 +21,7 @@ app.get('/api/planets', async (req, res) => {
     }
 });
 
-app.get('/api/planets/:id', async (req, res) => {
+app.get('/api/planets/:id', cors(corsOptions), async (req, res) => {
     try {
         let planets = await queryMongo('planets', {id: req.params.id});
         res.send(planets);
@@ -26,7 +30,7 @@ app.get('/api/planets/:id', async (req, res) => {
     }
 });
 
-app.get('/api/planets/:id/films', async (req, res) => {
+app.get('/api/planets/:id/films', cors(corsOptions), async (req, res) => {
     try {
         let planets = await queryMongo('films_planets', {planet_id: parseInt(req.params.id)});
         res.send(planets);
@@ -35,7 +39,7 @@ app.get('/api/planets/:id/films', async (req, res) => {
     }
 });
 
-app.get('/api/planets/:id/characters', async (req, res) => {
+app.get('/api/planets/:id/characters', cors(corsOptions), async (req, res) => {
     try {
         let planets = await queryMongo('characters', { homeworld: parseInt(req.params.id) });
         res.send(planets);
@@ -44,7 +48,7 @@ app.get('/api/planets/:id/characters', async (req, res) => {
     }
 });
 
-app.get('/api/characters', async (req, res) => {
+app.get('/api/characters', cors(corsOptions), async (req, res) => {
     try {
         let characters = await queryMongo('characters');
         res.send(characters);
@@ -53,7 +57,7 @@ app.get('/api/characters', async (req, res) => {
     }
 });
 
-app.get('/api/characters/:id', async (req, res) => {
+app.get('/api/characters/:id', cors(corsOptions), async (req, res) => {
     try {
         let characters = await queryMongo('characters', { id: parseInt(req.params.id) });
         res.send(characters);
@@ -62,7 +66,7 @@ app.get('/api/characters/:id', async (req, res) => {
     }
 });
 
-app.get('/api/characters/:id/films', async (req, res) => {
+app.get('/api/characters/:id/films', cors(corsOptions), async (req, res) => {
     try {
         let characters = await queryMongo('films_characters', { character_id: parseInt(req.params.id) });
         res.send(characters);
