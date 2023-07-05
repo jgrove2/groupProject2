@@ -5,7 +5,7 @@ const Home = (props) => {
     const [characters, setCharacters] = useState([]);
 
     const searchCharacters = async () => {
-        
+        const temp = await fetch('http://localhost:3001/api/characters');
         const json = await temp.json();
         console.log(json)
         setCharacters(json)
