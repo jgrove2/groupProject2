@@ -1,2 +1,5 @@
 node_modules
 package-lock.json
+
+./project2react/package-lock.json
+./project2react/node_modules
