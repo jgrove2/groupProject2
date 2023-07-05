@@ -23,7 +23,8 @@ app.get('/api/planets', cors(corsOptions), async (req, res) => {
 
 app.get('/api/planets/:id', cors(corsOptions), async (req, res) => {
     try {
-        let planets = await queryMongo('planets', {id: req.params.id});
+        console.log(req.params.id)
+        let planets = await queryMongo('planets', {id: parseInt(req.params.id)});
         res.send(planets);
     } catch (err) {
         throw err;
@@ -39,7 +40,16 @@ app.get('/api/planets/:id/films', cors(corsOptions), async (req, res) => {
     }
 });
 
-app.get('/api/planets/:id/characters', cors(corsOptions), async (req, res) => {
+app.get('/api/films/:id/planets', async (req, res) => {
+    try {
+        let planets = await queryMongo('films_planets', {film_id: parseInt(req.params.id)});
+        res.send(planets);
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.get('/api/planets/:id/characters', async (req, res) => {
     try {
         let planets = await queryMongo('characters', { homeworld: parseInt(req.params.id) });
         res.send(planets);
@@ -74,6 +84,33 @@ app.get('/api/characters/:id/films', cors(corsOptions), async (req, res) => {
         throw err;
     }
 });
+
+app.get('/api/films/:id/characters', async (req, res) => {
+    try {
+        let characters = await queryMongo('films_characters', { film_id: parseInt(req.params.id) });
+        res.send(characters);
+    } catch (err) {
+        throw err;
+    }
+});
+app.get('/api/films', async (req, res) => {
+    try {
+        let films = await queryMongo('films');
+        res.send(films);
+    } catch (err) {
+        throw err;
+    }
+})
+
+app.get('/api/films/:id', async (req, res) => {
+    try {
+        let films = await queryMongo('films', { id: parseInt(req.params.id) });
+        console.log(req.params.id);
+        res.send(films);
+    } catch (err) {
+        throw err;
+    }
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
