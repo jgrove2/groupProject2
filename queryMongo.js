@@ -1,7 +1,7 @@
 const { query } = require('express');
 const { MongoClient } = require('mongodb');
 
-const queryMongo = async (type, query={}) => {
+const queryMongo = async (type, query = {}) => {
     let returnedDocuments = null;
     let options = {};
     try {
@@ -20,6 +20,10 @@ const queryMongo = async (type, query={}) => {
                 returnedDocuments = await collection.find(query, options).toArray();
                 break;
             case ('characters'):
+                // options = {};
+                returnedDocuments = await collection.find(query, options).toArray();
+                break;
+            case ('films_characters'):
                 // options = {};
                 returnedDocuments = await collection.find(query, options).toArray();
                 break;

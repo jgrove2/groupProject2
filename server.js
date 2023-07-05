@@ -44,6 +44,33 @@ app.get('/api/planets/:id/characters', async (req, res) => {
     }
 });
 
+app.get('/api/characters', async (req, res) => {
+    try {
+        let characters = await queryMongo('characters');
+        res.send(characters);
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.get('/api/characters/:id', async (req, res) => {
+    try {
+        let characters = await queryMongo('characters', { id: parseInt(req.params.id) });
+        res.send(characters);
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.get('/api/characters/:id/films', async (req, res) => {
+    try {
+        let characters = await queryMongo('films_characters', { character_id: parseInt(req.params.id) });
+        res.send(characters);
+    } catch (err) {
+        throw err;
+    }
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 })
