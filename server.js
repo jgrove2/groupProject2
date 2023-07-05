@@ -15,17 +15,34 @@ app.get('/api/planets', async (req, res) => {
     } catch (err) {
         throw err;
     }
-})
+});
 
 app.get('/api/planets/:id', async (req, res) => {
     try {
-        let planets = await queryMongo('planets', req.params.id);
-        console.log(req.params.id);
+        let planets = await queryMongo('planets', {id: req.params.id});
         res.send(planets);
     } catch (err) {
         throw err;
     }
-})
+});
+
+app.get('/api/planets/:id/films', async (req, res) => {
+    try {
+        let planets = await queryMongo('films_planets', {planet_id: parseInt(req.params.id)});
+        res.send(planets);
+    } catch (err) {
+        throw err;
+    }
+});
+
+app.get('/api/planets/:id/characters', async (req, res) => {
+    try {
+        let planets = await queryMongo('characters', { homeworld: parseInt(req.params.id) });
+        res.send(planets);
+    } catch (err) {
+        throw err;
+    }
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
