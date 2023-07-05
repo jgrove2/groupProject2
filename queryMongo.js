@@ -1,3 +1,4 @@
+const { query } = require('express');
 const { MongoClient } = require('mongodb');
 
 const queryMongo = async (type, id=null) => {
@@ -30,4 +31,4 @@ const queryMongo = async (type, id=null) => {
     }
 }
 
-export default queryMongo;
+module.exports = queryMongo;
