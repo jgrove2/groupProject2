@@ -17,7 +17,7 @@ const queryMongo = async (type, query = {}) => {
                 break;
             case ('planets'):
                 // options = {};
-                returnedDocuments = await collection.find(query, options).toArray();
+                returnedDocuments = await collection.find(query).toArray();
                 console.log(returnedDocuments);
                 break;
             case ('films_planets'):

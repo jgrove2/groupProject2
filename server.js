@@ -19,7 +19,8 @@ app.get('/api/planets', async (req, res) => {
 
 app.get('/api/planets/:id', async (req, res) => {
     try {
-        let planets = await queryMongo('planets', {id: req.params.id});
+        console.log(req.params.id)
+        let planets = await queryMongo('planets', {id: parseInt(req.params.id)});
         res.send(planets);
     } catch (err) {
         throw err;
