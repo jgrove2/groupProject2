@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/planets', async (req, res) => {
     try {
-        let planets = await findPlanets();
+        let planets = await queryMongo('planets');
         res.send(planets);
     } catch (err) {
         throw err;
