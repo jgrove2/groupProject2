@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const Film = ({ ...params }) => {
     const { id } = useParams();
+    const navigate = useNavigate()
     const [filmDetails, setFilmDetails] = useState({ title: undefined, release_date: undefined, director: undefined });
     const [characters, setCharacters] = useState([]);
     const [planets, setPlanets] = useState([]);
     const findFilm = async () => {
         const film = await fetch(`http://localhost:3001/api/films/${id}`);
         const details = await film.json();
+        if(details.length === 0) {
+            navigate('/404', {state: {
+                message: "Incorrect Film Id"
+            }})
+        }
         setFilmDetails(details[0]);
     }
     const findCharacters = async () => {
