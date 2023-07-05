@@ -10,6 +10,11 @@ const queryMongo = async (type, query = {}) => {
         const database = client.db('swapi');
         const collection = database.collection(type);
         switch (type) {
+            case ('films'):
+                console.log(query);
+                returnedDocuments = await collection.find(query).toArray();
+                console.log(returnedDocuments);
+                break;
             case ('planets'):
                 // options = {};
                 returnedDocuments = await collection.find(query, options).toArray();
@@ -40,4 +45,7 @@ const queryMongo = async (type, query = {}) => {
     }
 }
 
+
+
 module.exports = queryMongo;
+
