@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import Home from './components/Home.js'
 import Character from './components/Character';
+import Film from './components/Film';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='character/:id' element={<Character />} />
+        <Route path='films/:id' element={<Film />} />
       </Routes>
     </div>
   );
