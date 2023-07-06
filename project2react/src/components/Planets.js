@@ -52,20 +52,21 @@ const Planets = ({ ...params }) => {
         <>
             <h1>{planetDetails.name}</h1>
             <div>
-                <p>{`Released: ${planetDetails.climate}`}</p>
-                <p>{`Director: ${planetDetails.population}`}</p>
-                <p>{`Episode: ${planetDetails.gravity}`}</p>
+                <span>{`Climate: ${planetDetails.climate}`}</span>
+                <span>{`Population: ${planetDetails.population}`}</span>
+                <span>{`Gravity: ${planetDetails.gravity}`}</span>
+                <span>{`Diameter: ${planetDetails.diameter}km`}</span>
             </div>
             <div>
                 <h3>Characters</h3>
                 {
                     characters.map((char, index) => {
                         return (
-                            <p key={index}>
+                            <span key={index}>
                                 <Link to={`/characters/${char.id}`}>
                                     {char.name}
                                 </Link>
-                            </p>
+                            </span>
                         )
                     })
                 }
@@ -75,11 +76,11 @@ const Planets = ({ ...params }) => {
                 {
                     films.map((film, index) => {
                         return (
-                            <p key={index}>
+                            <span key={index}>
                                 <Link to={`/films/${film.id}`}>
                                     {film.title}
                                 </Link>
-                            </p>
+                            </span>
                         )
                     })
                 }

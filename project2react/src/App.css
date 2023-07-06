@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 5% auto;
+  background: #f2f2f2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-size: 16px;
+  line-height: 1.8;
+  text-shadow: 0 1px 0 #ffffff;
+  max-width: 70%;
+}
+span {
+  margin: 1em;
+}

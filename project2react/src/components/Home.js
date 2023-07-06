@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom'
 import HomeCharacter from './HomeCharacter';
 
 const Home = (props) => {
@@ -21,7 +22,13 @@ const Home = (props) => {
         <hr/>
         {
             characters.map((char, index) => {
-                return <HomeCharacter key={index} name={char.name} id={char.id} />
+                return (
+                    <span key={index}>
+                        <Link to={`/character/${char.id}`}>
+                            {char.name}
+                        </Link>
+                    </span>
+                )
             })
         }
         </>
