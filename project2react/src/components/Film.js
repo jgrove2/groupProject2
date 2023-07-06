@@ -50,20 +50,20 @@ const Film = ({ ...params }) => {
         <>
             <h1>{filmDetails.title}</h1>
             <div>
-                <p>{`Released: ${filmDetails.release_date}`}</p>
-                <p>{`Director: ${filmDetails.director}`}</p>
-                <p>{`Episode: ${filmDetails.episode_id}`}</p>
+                <span>{`Released: ${filmDetails.release_date}`}</span>
+                <span>{`Director: ${filmDetails.director}`}</span>
+                <span>{`Episode: ${filmDetails.episode_id}`}</span>
             </div>
             <div>
                 <h3>Characters</h3>
                 {
                     characters.map((char, index) => {
                         return (
-                            <p key={index}>
+                            <span key={index}>
                                 <Link to={`/character/${char.id}`}>
                                     {char.name}
                                 </Link>
-                            </p>
+                            </span>
                         )
                     })
                 }
@@ -73,11 +73,11 @@ const Film = ({ ...params }) => {
                 {
                     planets.map((planet, index) => {
                         return (
-                            <p key={index}>
+                            <span key={index}>
                                 <Link to={`/planets/${planet.id}`}>
                                     {planet.name}
                                 </Link>
-                            </p>
+                            </span>
                         )
                     })
                 }
